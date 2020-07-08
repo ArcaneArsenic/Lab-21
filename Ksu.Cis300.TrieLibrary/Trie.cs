@@ -10,6 +10,7 @@ namespace Ksu.Cis300.TrieLibrary
     {
         private bool EmptyCheck = false;
         private Trie[] chil = new Trie[26];
+        char temp;
 
         /// <summary>
         /// 
@@ -20,10 +21,15 @@ namespace Ksu.Cis300.TrieLibrary
         {
             for (int x = 0; x < s.Length; x++)
             {
-                string newStr = chil[].Clone; //SOS
-                if (chil[] < 'z' && chil[] > 'a') return false;
-                if (newStr.Contains(s.Substring(x))) return true;
+                temp = Convert.ToChar(chil[x]); //SOS
+                if (temp < 'z' && temp > 'a')
+                {
+                    if (temp.Equals(s.Substring(x))) return true;
+                    else { return false; }
+                }
+                else { return false; }
             }
+            return true;
             
         }
 
@@ -33,8 +39,12 @@ namespace Ksu.Cis300.TrieLibrary
         /// <param name="s"></param>
         public void Add(string s)
         {
-            chil[].Concat(s);
-            if (chil[] < 'z' && chil[] > 'a')  throw ArgumentException("Character range is lower-case onyl");
+            while (!chil[0].EmptyCheck)
+            {
+                chil[0].Add(s);
+                if (Convert.ToChar(chil[0]) < 'z' && Convert.ToChar(chil[0]) > 'a') 
+                    throw ArgumentException("Character range is lower-case onyl");
+            }
 
 
         }
